@@ -12,6 +12,7 @@ const FormA = () =>{
                 <Loading/>
             )
         }
+
         {
             error && (
                 <div className={"flex mt-20"}>
