@@ -12,6 +12,13 @@ const FormA = () =>{
                 <Loading/>
             )
         }
+        {
+            error && (
+                <div className={"flex mt-20"}>
+                    <p className={"text-red-400"}>{error}</p>
+                </div>
+            )
+        }
         <div className={"fixed top-0 w-full text-center p-3 bg-gray-300 z-10 shadow-2xl"}>
             <p>Eingangsbereich</p>
         </div>
