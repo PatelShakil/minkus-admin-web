@@ -32,7 +32,10 @@ const FormG = () =>{
                             <p>Rundgang Datum : <b>{form.rundgang}</b></p>
                             <p>Objekt / Straße : <b>{form.state}</b></p>
                             <p>Sauberkeit : <b>{form.sauberkit}</b></p>
-                           </div>
+                                                       <p>Location : <a className={"text-blue-500"}
+                                                                        href={`https://www.google.com/maps?q=${form.lat},${form.lon}`}><b>Click to View</b></a></p>
+
+                            </div>
                             <div className={"col-span-1 justify-center flex flex-col"}>
                                 <p>Email : <b>{form.user_email}</b></p>
                             <div className={"shadow-sm rounded-md bg-white text-center"}>

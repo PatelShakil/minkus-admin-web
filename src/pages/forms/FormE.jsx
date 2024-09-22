@@ -37,6 +37,9 @@ const FormE = () =>{
                             <p>Papierkörbe wenn vorhanden leeren  : <b>{getJa(form.checkbox2)}</b></p>
                             <p>Müllplatz reinigen (auf Bedarf - Besenrein)  : <b>{getJa(form.checkbox3)}</b></p>
                             <p>Unkraut am Gehweg und Gebäude entfernen (auf Bedarf - notwendig?)  : <b>{getJa(form.checkbox4)}</b></p>
+                                                            <p>Location : <a className={"text-blue-500"}
+                                                                             href={`https://www.google.com/maps?q=${form.lat},${form.lon}`}><b>Click to View</b></a></p>
+
                             </div>
                             <div className={"col-span-1 justify-center flex flex-col"}>
                                 <p>Email : <b>{form.user_email}</b></p>

@@ -37,6 +37,9 @@ const FormB = () =>{
                             <p>Sind Flucht- und Rettungswege frei? : <b>{getJa(form.checkbox2)}</b></p>
                             <p>Alle Fenster 1x öffnen und 1x schließen - schließen diese sauber? : <b>{getJa(form.checkbox3)}</b></p>
                             <p>Aufzug Sauberkeit der Gleitschiene Nacharbeit nötig? : <b>{getJa(form.checkbox4)}</b></p>
+                                                        <p>Location : <a className={"text-blue-500"}
+                                                                         href={`https://www.google.com/maps?q=${form.lat},${form.lon}`}><b>Click to View</b></a></p>
+
                             </div>
                             <div className={"col-span-1 justify-center flex flex-col"}>
                                 <p>Email : <b>{form.user_email}</b></p>

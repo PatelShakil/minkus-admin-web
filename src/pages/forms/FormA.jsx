@@ -35,6 +35,7 @@ const FormA = () =>{
                             <p>Sauberkeit : <b>{form.sauberkit}</b></p>
                             <p>Eingangstüre und Türschließer auf Funktion prüfen : <b>{getJa(form.checkbox1)}</b></p>
                             <p>Briefkastenanlage Sauberkeit/Aufkleber/Namensschschlder : <b>{getJa(form.checkbox2)}</b></p>
+                            <p>Location : <a className={"text-blue-500"} href={`https://www.google.com/maps?q=${form.lat},${form.lon}`}><b>Click to View</b></a></p>
                             </div>
                             <div className={"col-span-1 justify-center flex flex-col"}>
                                 <p>Email : <b>{form.user_email}</b></p>

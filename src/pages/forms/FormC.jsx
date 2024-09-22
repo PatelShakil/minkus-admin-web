@@ -36,6 +36,9 @@ const FormC = () =>{
                             <p>Rohrleitung auf Dichtigkeit OPTISCH prüfen (bei Schäden Fotos) : <b>{getJa(form.checkbox1)}</b></p>
                             <p>Alle Brandschutztüren prüfen (selbstständige Schließung) : <b>{getJa(form.checkbox2)}</b></p>
                             <p>Rückspülfilter/Wasserfilter (Reinigung alle 14 Tage bestätigen) : <b>{getJa(form.checkbox3)}</b></p>
+                                                        <p>Location : <a className={"text-blue-500"}
+                                                                         href={`https://www.google.com/maps?q=${form.lat},${form.lon}`}><b>Click to View</b></a></p>
+
                             </div>
                             <div className={"col-span-1 justify-center flex flex-col"}>
                                 <p>Email : <b>{form.user_email}</b></p>
