@@ -81,7 +81,6 @@ const ViewTask = ()=>{
     }, []);
 
 
-
     return <div className={"flex flex-col"}>
         {
             isLoading && (<Loading />)
@@ -93,13 +92,22 @@ const ViewTask = ()=>{
             {
                 data && (
                     data.map((task,index)=>(<div key={index} className={`flex shadow-sm p-2 m-1 rounded-md bg-gray-100`}>
-                        <div className={"absolute h-10 w-10 bg-gray-300 rounded-full text-center flex items-center justify-center"
-                        }
+                        <div className={"absolute h-10 w-10 bg-gray-300 rounded-full text-center flex items-center justify-center"}
+                        >{task.task.id}</div><div
+                        className="absolute text-white right-0 mr-4 text-sm font-bold rounded-md px-2"
                         style={{
-                            backgroundColor:task.task.color
+                            backgroundColor:
+                                task.task.color == 1
+                                    ? "#e1e50b"
+                                    : task.task.color == 2
+                                        ? "#2015cd"
+                                        : "#808080",
+                            backgroundImage: task.task.color == 3 && `linear-gradient(to right, #e1e50b 50%, #2015cd 50%)`,
+
                         }}
-                        >{task.task.id}</div>
-                        <div className={"absolute right-0 mr-4 text-sm font-bold bg-gray-300 rounded-md px-2"}>Date : {task.task.date}</div>
+                    >
+                        Date: {task.task.date}
+                    </div>
                         <span className={"ps-12 pt-4"}>
                             <p className={" font-semibold"}>{task.task.title}</p>
                             <p className={"text-sm"}>{task.task.description}</p>

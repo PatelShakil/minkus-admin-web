@@ -11,7 +11,7 @@ const ScheduleEventPage = () => {
     const [title, setTitle] = useState("");
     const [des, setDes] = useState("");
     const [isMull, setIsMull] = useState(false);  // New state for toggle
-    const [color, setColor] = useState("");       // New state for color picker
+    const [color, setColor] = useState(0);       // New state for color picker
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -28,6 +28,8 @@ const ScheduleEventPage = () => {
             data.set("is_mull", isMull ? "1" : "0"); // Pass toggle value
             if(isMull) {
                 data.set("color", color); // Pass color if is_mull is true
+            }else{
+                data.set("color",0);
             }
 
             let resp = await fetch(Cons.BASE_URL + "/add-task.php",{
@@ -140,12 +142,35 @@ const ScheduleEventPage = () => {
                     isMull && (
                         <div className={"mb-4 items-center gap-x-3 justify-center flex"}>
                             <label className={"mb-1 font-bold text-sm pl-2"}>Select Color</label>
-                            <input
-                                type="color"
-                                value={color}
-                                className={"w-12 h-12 bg-white rounded-lg"}
-                                onChange={(e) => setColor(e.target.value)}
-                            />
+                            <div
+                            onClick={()=>{setColor(1)}}
+                                className={"h-10 w-10 rounded-full cursor-pointer"} style={{
+                                backgroundColor:'#e1e50b',
+                                border:"2px",
+                                borderStyle:'solid',
+                                borderColor:color === 1 ? "black" : "white"
+                            }}></div>
+                            <div
+                                onClick={()=>{setColor(2)}}
+                                className={"h-10 w-10 rounded-full cursor-pointer"}
+                                  style={{
+                                backgroundColor:'#2015cd',
+                                      border:"2px",
+                                      borderStyle:'solid',
+                                      borderColor:color === 2 ? "black" : "white"
+                                  }}></div>
+                            <div
+                                onClick={()=>{setColor(3)}}
+                                className={"h-11 w-11 rounded-full cursor-pointer"}
+                                style={{
+                                    border:"2px",
+                                    borderStyle:'solid',
+                                    borderColor:color === 3 ? "black" : "white"
+
+                                }}
+                            >
+                                <img className={"rounded-full"} src={"./gr_col.png"} alt={""} />
+                            </div>
                         </div>
                     )
                 }
