@@ -37,6 +37,20 @@ const AllProtocol = () => {
     console.log(data);
   }, [data]);
 
+  function convertImageToBase64(url, callback) {
+    const xhr = new XMLHttpRequest();
+    xhr.onload = function () {
+      const reader = new FileReader();
+      reader.onloadend = function () {
+        callback(reader.result);
+      };
+      reader.readAsDataURL(xhr.response);
+    };
+    xhr.open("GET", url);
+    xhr.responseType = "blob";
+    xhr.send();
+  }
+
   // Function to download the specific form as a PDF
   const downloadAsPDF = async (elementId) => {
     const element = document.getElementById(elementId);
@@ -47,48 +61,49 @@ const AllProtocol = () => {
       return;
     }
 
-    // Create a promise to check if images are loaded
-    const images = element.getElementsByTagName("img");
-    const imagePromises = Array.from(images).map((img) => {
-      return new Promise((resolve) => {
-        if (img.complete) {
-          resolve(); // Image already loaded
-        } else {
-          img.onload = resolve; // Resolve when loaded
-          img.onerror = (err) => {
-            console.error("Image load error:", err);
-            resolve(); // Resolve even on error
-          };
-        }
-      });
-    });
+      const images = element.getElementsByTagName("img");
 
-    // Wait for all images to load
-    await Promise.all(imagePromises);
+      // Check if there is at least one image
+      if (images.length === 0) {
+        console.error("No images found in element:", elementId);
+        return;
+      }
 
-    // Ensure images are visible (not hidden)
-    Array.from(images).forEach((img) => {
-        console.log(img);
-        img.style.background = `url(${img.src})`;
-      img.style.display = "block"; // Make sure the image is displayed
-      img.style.visibility = "visible"; // Ensure the image is visible
-    });
+      // Store the original image element for restoration later
+      const imageElement = images[0];
+      const originalSrc = imageElement.src;
+
+      // Create a temporary link element
+      const tempLink = document.createElement("a");
+      tempLink.href = originalSrc;
+      tempLink.textContent = "View Signature";
+      tempLink.classList.add("text-blue-500");
+
+      // Replace the image with the link in the DOM
+      imageElement.parentNode.replaceChild(tempLink, imageElement);
+
 
     const opt = {
       margin: 0.2,
       filename: `${elementId}.pdf`,
       image: { type: "jpeg", quality: 1 }, // Improve quality of images
-      html2canvas: { scale: 2, useCORS: true }, // Increase scale for better quality
+      html2canvas: { scale: 2, useCORS: false }, // Increase scale for better quality
       jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
     };
 
     // Generate the PDF
     try {
-      await html2pdf().from(element).set(opt).save();
+      html2pdf().from(element).set(opt).save();
+                //   tempLink.parentNode.replaceChild(imageElement, tempLink);
+                setTimeout(() => {
+                                    window.location.reload();
+                }, 2000);
     } catch (error) {
       console.error("Error generating PDF:", error);
+    }finally{
+        
     }
-  };    
+  };
 
   return (
     <div className={"flex flex-col"}>
@@ -157,18 +172,25 @@ const AllProtocol = () => {
                   className={
                     "bg-green-500 p-2 text-center text-white w-full rounded-tl-md rounded-tr-md"
                   }
-                  onClick={() => downloadAsPDF(protocol.protocol_subs.id)}>
+                  onClick={() => {
+                    downloadAsPDF(protocol.protocol_subs.id);
+                  }}>
                   Download Protocol
                 </button>
-                <div className={"shadow-sm rounded-md bg-white text-center"}>
+                <div
+                  className={
+                    "shadow-sm flex flex-col justify-center w-full rounded-bl-md rounded-br-md bg-white text-center"
+                  }>
                   {protocol.form && (
                     <img
-                      src={protocol.form.signature}
+                      //   src={"https://app-minkus.com/proxy.php?url="+protocol.form.signature}
+                        src={protocol.form.signature}
                       alt={protocol.form.signature}
-                      className={"w-52"}
+                      className={"object-contain h-32"}
                     />
                   )}
-                  <b>Signature</b>
+                  <div id={protocol.form.signature}>
+                  <b>Signature</b></div>
                 </div>
               </div>
             </span>
