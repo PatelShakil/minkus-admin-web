@@ -32,6 +32,12 @@ const HomePage = ()=>{
                 <p className={"text-center col-span-full text-gray-500 my-2"}>View Protocols</p>
                 <div className={btnCss + "col-span-1"}
                      onClick={() => {
+                         navigate(Pages.AllProtocol)
+                     }}>
+                    <p>All Protocols</p>
+                </div>
+                <div className={btnCss + "col-span-1"}
+                     onClick={() => {
                          navigate(Pages.FormA)
                      }}>
                     <p>Eingangsbereich</p>

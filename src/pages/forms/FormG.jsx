@@ -31,7 +31,6 @@ const FormG = () =>{
                             <p>Name :<b>{form.name}</b></p>
                             <p>Rundgang Datum : <b>{form.rundgang}</b></p>
                             <p>Objekt / Straße : <b>{form.state}</b></p>
-                            <p>Sauberkeit : <b>{form.sauberkit}</b></p>
                                                        <p>Location : <a className={"text-blue-500"}
                                                                         href={`https://www.google.com/maps?q=${form.lat},${form.lon}`}><b>Click to View</b></a></p>
 

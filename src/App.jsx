@@ -13,6 +13,7 @@ import FormD from "./pages/forms/FormD.jsx";
 import FormE from "./pages/forms/FormE.jsx";
 import FormF from "./pages/forms/FormF.jsx";
 import FormG from "./pages/forms/FormG.jsx";
+import AllProtocol from "./pages/AllProtocol.jsx";
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
           <Route path={Pages.FormE} element={<FormE />} />
           <Route path={Pages.FormF} element={<FormF />} />
           <Route path={Pages.FormG} element={<FormG />} />
+          <Route path={Pages.AllProtocol} element={<AllProtocol />} />
       </Routes>
 
   )

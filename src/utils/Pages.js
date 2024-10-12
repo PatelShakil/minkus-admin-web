@@ -10,5 +10,6 @@ const Pages = {
     FormE:"/form-e",
     FormF:"/form-f",
     FormG:"/form-g",
+    AllProtocol:"/all-protocol"
 }
 export default Pages
